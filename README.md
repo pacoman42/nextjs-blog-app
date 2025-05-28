@@ -15,7 +15,8 @@ nextjs-blog-app
 ├── src/
 │   ├── components/
 │   │   ├── ConfirmModal.tsx  # Modal for confirming post deletion
-│   │   └── PostCard.tsx      # Post card component
+│   │   ├── PostCard.tsx      # Post card component
+│   │   └── UserInfoModal.tsx # Modal for user info.
 │   ├── pages/
 │   │   ├── _app.tsx          # Custom App component
 │   │   ├── index.tsx         # Main page
