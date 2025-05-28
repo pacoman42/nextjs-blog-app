@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import PostCard from '../components/PostCard';
 import ConfirmModal from '../components/ConfirmModal';
+import styles from '../styles/ui.module.css';
 
 interface User {
   id: number;
@@ -156,51 +157,51 @@ const PostsPage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-2 sm:px-4 py-8">
+    <div className={styles.postsPageContainer}>
       {error && (
-        <div className="mb-4 p-3 rounded bg-red-100 text-red-700 border border-red-300 text-center font-semibold">
+        <div className={styles.postsPageError}>
           {error}
         </div>
       )}
-      <div className="mb-8 animate-fade-in">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 drop-shadow">
+      <div className={styles.postsPageHeader}>
+        <div className={styles.postsPageHeaderRow}>
+          <h1 className={styles.postsPageTitle}>
             Posts
           </h1>
-          <div className="w-full md:w-auto">
-            <div className="bg-white/80 dark:bg-gray-800 rounded-xl shadow border border-blue-200 dark:border-blue-700 px-4 py-3 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4">
-              <span className="text-base font-semibold text-blue-700 mb-2 sm:mb-0 sm:mr-2 self-start sm:self-center">Filters</span>
+          <div className={styles.postsPageFiltersWrapper}>
+            <div className={styles.postsPageFilters}>
+              <span className={styles.postsPageFiltersLabel}>Filters</span>
               {/* Post title */}
-              <div className="flex-1 flex flex-col min-w-[120px]">
-                <label className="text-xs font-semibold text-blue-700 mb-1">Post title</label>
+              <div className={styles.postsPageFilterField}>
+                <label className={styles.postsPageFilterLabel}>Post title</label>
                 <input
                   type="text"
                   placeholder="Post title"
-                  className="border rounded px-2 py-1 text-sm focus:ring-2 focus:ring-blue-400"
+                  className={styles.postsPageFilterInput}
                   value={pendingTitle}
                   onChange={e => setPendingTitle(e.target.value)}
                   autoComplete="off"
                 />
               </div>
               {/* User Name */}
-              <div className="flex-1 flex flex-col min-w-[120px]">
-                <label className="text-xs font-semibold text-blue-700 mb-1">User Name</label>
+              <div className={styles.postsPageFilterField}>
+                <label className={styles.postsPageFilterLabel}>User Name</label>
                 <input
                   type="text"
                   placeholder="User Name"
-                  className="border rounded px-2 py-1 text-sm focus:ring-2 focus:ring-blue-400"
+                  className={styles.postsPageFilterInput}
                   value={pendingUserName}
                   onChange={e => setPendingUserName(e.target.value)}
                   autoComplete="off"
                 />
               </div>
               {/* Nickname */}
-              <div className="flex-1 flex flex-col min-w-[120px]">
-                <label className="text-xs font-semibold text-blue-700 mb-1">Nickname</label>
+              <div className={styles.postsPageFilterField}>
+                <label className={styles.postsPageFilterLabel}>Nickname</label>
                 <input
                   type="text"
                   placeholder="Nickname"
-                  className="border rounded px-2 py-1 text-sm focus:ring-2 focus:ring-blue-400"
+                  className={styles.postsPageFilterInput}
                   value={pendingUserUsername}
                   onChange={e => setPendingUserUsername(e.target.value)}
                   autoComplete="off"
@@ -209,16 +210,16 @@ const PostsPage = () => {
             </div>
           </div>
         </div>
-        <p className="text-gray-600 text-lg mb-6">Explore, filter and manage posts with a modern UI.</p>
+        <p className={styles.postsPageSubtitle}>Explore, filter and manage posts with a modern UI.</p>
       </div>
-      <div className="post-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className={`${styles.postsPageList} post-list`}>
         {paginatedPosts.length === 0 ? (
-          <div className="col-span-full text-center text-lg text-gray-500 dark:text-gray-400 py-12 animate-fade-in">
+          <div className={styles.postsPageNoPosts}>
             No posts found for the selected filters.
           </div>
         ) : (
           paginatedPosts.map(post => (
-            <div key={post.id} className="animate-fade-in">
+            <div key={post.id} className={styles.postsPageListItem}>
               <PostCard
                 id={post.id}
                 userId={post.userId}
@@ -232,11 +233,11 @@ const PostsPage = () => {
         )}
       </div>
       {/* Paginación compacta */}
-      <div className="flex flex-col items-center mt-10 gap-2">
-        <div className="flex items-center gap-1">
+      <div className={styles.postsPagePaginationWrapper}>
+        <div className={styles.postsPagePagination}>
           <button
             onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-            className="px-3 py-2 rounded-full font-semibold shadow transition-all duration-150 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900 disabled:opacity-50"
+            className={styles.postsPagePaginationBtn}
             disabled={currentPage === 1}
             aria-label="Anterior"
           >
@@ -246,11 +247,7 @@ const PostsPage = () => {
             <button
               key={pageNum}
               onClick={() => handlePageChange(pageNum)}
-              className={`px-4 py-2 rounded-full font-semibold shadow transition-all duration-150 ${
-                currentPage === pageNum
-                  ? 'bg-blue-600 dark:bg-blue-500 text-white scale-105'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900'
-              }`}
+              className={`${styles.postsPagePaginationBtn} ${currentPage === pageNum ? styles.postsPagePaginationBtnActive : ''}`}
               aria-current={currentPage === pageNum ? 'page' : undefined}
             >
               {pageNum}
@@ -258,15 +255,15 @@ const PostsPage = () => {
           ))}
           <button
             onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-            className="px-3 py-2 rounded-full font-semibold shadow transition-all duration-150 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-blue-900 disabled:opacity-50"
+            className={styles.postsPagePaginationBtn}
             disabled={currentPage === totalPages || totalPages === 0}
             aria-label="Siguiente"
           >
             &rarr;
           </button>
         </div>
-        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-          Page <span className="font-semibold">{currentPage}</span> of <span className="font-semibold">{totalPages || 1}</span> &mdash; {filteredPosts.length} posts
+        <div className={styles.postsPagePaginationInfo}>
+          Page <span className={styles.postsPagePaginationInfoCurrent}>{currentPage}</span> of <span className={styles.postsPagePaginationInfoTotal}>{totalPages || 1}</span> &mdash; {filteredPosts.length} posts
         </div>
       </div>
       <ConfirmModal

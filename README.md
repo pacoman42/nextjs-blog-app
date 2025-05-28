@@ -24,7 +24,8 @@ nextjs-blog-app
 │   │       ├── posts.ts      # API route for posts
 │   │       └── [id].ts       # API route for single post actions
 │   └── styles/
-│       └── globals.css       # Global styles
+│       ├── globals.css       # Global styles
+│       └── ui.module.css     # CSS Module for component and page styles
 ├── lib/
 │   └── prisma.ts             # Prisma client instance
 ├── .env                      # Environment variables (DB connection)
@@ -76,7 +77,3 @@ nextjs-blog-app
 6. Open your browser and go to `http://localhost:3000` to view the app.
 
 
-
-## License
-
-This project is licensed under the MIT License.
