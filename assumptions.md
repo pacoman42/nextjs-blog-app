@@ -9,3 +9,8 @@
 5. **Error Handling**: Basic error handling will be implemented for API calls, but it is assumed that more complex error handling and logging will not be required for this project.
 
 6. **Filters and Pagination**: Basic filters and pagination are included to facilitate post visualization. It is assumed that the data volume is not huge, so client-side filtering and pagination are sufficient for this use case.
+
+7. **Seed Script Table Cleanup**: Since this is a test database and to avoid duplicates, the `seed.mts` script cleans (deletes) all records from the relevant tables before inserting new data.
+
+8. **API and DB Security**: It is assumed that advanced security measures (rate limiting, input validation, XSS/CSRF protection) are not required for this technical test, as the app is intended for demonstration and local development purposes only.
+

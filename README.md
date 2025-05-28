@@ -41,6 +41,7 @@ nextjs-blog-app
 
 - List all posts from the database
 - Filter posts by user
+- Show users info
 - Delete posts with a confirmation modal
 - Error handling for API requests
 
@@ -62,11 +63,17 @@ nextjs-blog-app
      npx prisma migrate dev
      npx ts-node prisma/seed.mts
      ```
-4. Start the development server:
+4. **To reseed the database at any time, run:**
+   ```bash
+   npx tsx prisma/seed.mts
+   ```
+   - This will drop all tables, recreate, and reseed your SQLite database.
+
+5. Start the development server:
    ```bash
    npm run dev
    ```
-5. Open your browser and go to `http://localhost:3000` to view the app.
+6. Open your browser and go to `http://localhost:3000` to view the app.
 
 
 
