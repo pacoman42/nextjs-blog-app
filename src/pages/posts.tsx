@@ -76,7 +76,6 @@ const PostsPage = () => {
       setPosts(updatedPosts);
       setIsModalOpen(false);
       setPostToDelete(null);
-      // Ajustar currentPage si es necesario
       let filtered = updatedPosts;
       if (userNameFilter) filtered = filtered.filter(post => post.user.name.toLowerCase().includes(userNameFilter.toLowerCase()));
       if (userUsernameFilter) filtered = filtered.filter(post => post.user.username.toLowerCase().includes(userUsernameFilter.toLowerCase()));
@@ -168,7 +167,6 @@ const PostsPage = () => {
           <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 drop-shadow">
             Posts
           </h1>
-          {/* Filtros estáticos, alineados a la derecha en desktop */}
           <div className="w-full md:w-auto">
             <div className="bg-white/80 dark:bg-gray-800 rounded-xl shadow border border-blue-200 dark:border-blue-700 px-4 py-3 flex flex-col sm:flex-row sm:items-end gap-3 sm:gap-4">
               <span className="text-base font-semibold text-blue-700 mb-2 sm:mb-0 sm:mr-2 self-start sm:self-center">Filters</span>
@@ -212,7 +210,6 @@ const PostsPage = () => {
           </div>
         </div>
         <p className="text-gray-600 text-lg mb-6">Explore, filter and manage posts with a modern UI.</p>
-        {/* ...existing code... */}
       </div>
       <div className="post-list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedPosts.length === 0 ? (
