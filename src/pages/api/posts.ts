@@ -6,6 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const posts = await prisma.post.findMany({
         orderBy: { id: 'desc' },
+        include: { user: true }, // Include user data
       });
       res.status(200).json(posts);
     } catch (error) {

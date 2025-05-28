@@ -1,73 +1,74 @@
 # Next.js Blog App
 
-This is a simple blog application built using Next.js and TypeScript. The application allows users to list posts retrieved from a database and filter them by the user who created them. It is designed to provide a smooth user experience, even in environments with unstable internet connections.
+This is a simple blog application built with Next.js and TypeScript. It allows users to list posts from a database, filter them by user, and delete posts with confirmation. The app is designed for a smooth user experience, even with unstable internet connections.
 
 ## Project Structure
 
-The project is organized as follows:
-
 ```
 nextjs-blog-app
-├── prisma
-│   ├── schema.prisma      # Defines the database schema using Prisma
-│   └── seed.ts            # Script to seed the database with example data
-├── public                  # Directory for static files (images, fonts, etc.)
-├── src
-│   ├── pages
-│   │   ├── index.tsx      # Main page of the application
-│   │   └── posts.tsx      # Page that lists all posts
-│   ├── components
-│   │   ├── PostCard.tsx    # Component representing a post card
-│   │   └── ConfirmModal.tsx # Modal for confirming post deletion
-│   ├── lib
-│   │   └── prisma.ts       # Configures and exports Prisma client instance
-│   └── styles
-│       └── globals.css     # Global styles for the application
-├── .env                    # Environment variables (database connection details)
-├── assumptions.md          # Assumptions made during development
-├── package.json            # npm configuration file
-├── tsconfig.json           # TypeScript configuration file
-├── next.config.js          # Next.js specific configuration
-└── README.md               # Documentation for the project
+├── prisma/
+│   ├── migrations/           # Database migrations
+│   ├── schema.prisma         # Prisma database schema
+│   ├── seed.mts              # Script to seed the database
+│   └── dev.db                # SQLite database (local)
+├── public/                   # Static files (images, favicon, etc.)
+├── src/
+│   ├── components/
+│   │   ├── ConfirmModal.tsx  # Modal for confirming post deletion
+│   │   └── PostCard.tsx      # Post card component
+│   ├── pages/
+│   │   ├── _app.tsx          # Custom App component
+│   │   ├── index.tsx         # Main page
+│   │   ├── posts.tsx         # Posts listing page
+│   │   └── api/
+│   │       ├── posts.ts      # API route for posts
+│   │       └── [id].ts       # API route for single post actions
+│   └── styles/
+│       └── globals.css       # Global styles
+├── lib/
+│   └── prisma.ts             # Prisma client instance
+├── .env                      # Environment variables (DB connection)
+├── assumptions.md            # Development assumptions
+├── package.json              # npm configuration
+├── tsconfig.json             # TypeScript configuration
+├── next.config.js            # Next.js configuration
+├── tailwind.config.js        # Tailwind CSS configuration
+├── postcss.config.js         # PostCSS configuration
+└── README.md                 # Project documentation
 ```
 
 ## Features
 
-- List all posts from the database.
-- Filter posts by user ID.
-- Delete posts with a confirmation modal.
-- Error handling for API requests.
+- List all posts from the database
+- Filter posts by user
+- Delete posts with a confirmation modal
+- Error handling for API requests
 
 ## Setup
 
 1. Clone the repository:
-   ```
+   ```bash
    git clone <repository-url>
    cd nextjs-blog-app
    ```
-
 2. Install dependencies:
-   ```
+   ```bash
    npm install
    ```
-
 3. Set up the database:
    - Update the `.env` file with your database connection details.
-   - Run the seed script to populate the database:
+   - Run the migrations and seed script:
+     ```bash
+     npx prisma migrate dev
+     npx ts-node prisma/seed.mts
      ```
-     npx ts-node prisma/seed.ts
-     ```
-
 4. Start the development server:
-   ```
+   ```bash
    npm run dev
    ```
+5. Open your browser and go to `http://localhost:3000` to view the app.
 
-5. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-## Assumptions
-
-Refer to the `assumptions.md` file for details on the assumptions made during the development of this project. 
 
 ## License
 
